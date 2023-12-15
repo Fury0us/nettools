@@ -1,5 +1,165 @@
 #!/bin/bash
 COLUMNS=12
+exiftool() {
+	echo -en '\n'
+	clear
+	read -p $'\e[31mFile Path?: \e[0m' photo
+	PS3=("#exif: ")
+	exif=("View All Metadata" "Erase Metadata" "View Metadata Tags" "Edit Metadata" "Get GPS Coordinates" "Extract Metadata to Text" "Previous Menu")
+	select ex in "${exif[@]}"; do
+	case $ex in
+	"View All Metadata")
+	sudo exiftool $photo
+	;;
+	"Erase Metadata")
+	sudo exiftool -all= $photo
+	;;
+	"View Metadata Tags")
+	sudo exiftool -a $photo
+	;;
+	"Edit Metadata")
+	read -p $'\e[31mTAGMANE?: \e[0m' tag
+	read -p $'\e[31mValue?\e[0m' value
+	sudo exiftool -$tag="$value"
+	;;
+	"Get GPS Coordinates")
+	sudo exiftool -GPSLatitude -GPSLongitude $photo
+	;;
+	"Extract Metadata to Text")
+	sudo exiftool -a -u -G1 -w TXT "$photo".txt $photo
+	;;
+	"Previous Menu")
+	auditing_tools
+	;;
+	esac
+done
+}
+holehe() {
+	if [ $HOME/.local/bin/holehe ]
+	then
+		clear
+		echo -en '\n'
+		echo $'\e[31mholehe is installed, continuing..\e[0m'
+	else
+		clear
+		echo -en '\n'
+		pip3 install holehe
+		echo -en '\n'
+		echo $'\e[31mholehe has been installed!\e[0m'
+	fi
+	read -p $'\e[31mDomain/Email to search?: \e[0m' scan
+	holehe $scan
+	echo -en '\n'
+	auditing_tools
+}
+skipfish() {
+	echo -en '\n'
+	clear
+	read -p $'\e[31mURL?\e[0m' URL
+	read -p $'\e[31mOutput loc?: \e[0m' OUTPUT
+	PS3=("#skip: ")
+	skip=("Custom Config File" "Generate a Report" "Maximum Depth" "Spec Login" "Previous Menu")
+	select sk in "${skip[@]}"; do
+	case $sk in
+	"Custom Config File")
+	;;
+	"Generate a Report")
+	;;
+	"Maximum Depth")
+	;;
+	"Spec Login")
+	;;
+	"Previous Menu")
+	;;
+	esac
+done
+}
+harvester() {
+	echo -en '\n'
+	clear
+	PS3=("#harv :")
+	harvest=("Manage API Keys" "Domain Search" "Email Lookup" "Comprehensive Scan(email/domain" "Previous Menu")
+	select harv in "${harvest[@]}"; do
+	case $harv in
+	"Manage API Keys")
+	harvester_api
+	;;
+	"Domain Search")
+	;;
+	"Email Lookup")
+	;;
+	"Comprehensive Scan(email/domain")
+	;;
+	"Previous Menu")
+	auditing_tools
+	;;
+esac
+done
+}
+harvester_api() {
+	echo -en '\n'
+	clear
+	PS3=("#harv-api: ")
+	hapi=("bevigil" "binaryedge" "bufferoverun" "Censys ID" "Secret" "criminalip" "fullhunt" "Github" "Hunter" "hunterhow" "Intelx" "netlas" "onyphe" "PentestTools" "ProjectDiscovery" "RocketReach" "Securitytrail" "Tomba Key" "Virustotal" "zoomeye" "Previous Menu")
+	select ha in "${hapi[@]}"; do
+	case $ha in
+	"bevigil")
+	;;
+	"binaryedge")
+	;;
+	"bufferoverun")
+	;;
+	"Censys ID")
+	;;
+	"Secret")
+	;;
+	"criminalip")
+	;;
+	"fullhunt")
+	;;
+	"Github")
+	;;
+	"Hunter")
+	;;
+	"hunterhow")
+	;;
+	"Intelx")
+        ;;
+        "netlas")
+        ;;
+        "onyphe")
+        ;;
+        "PentestTools")
+        ;;
+        "ProjectDiscovery")
+        ;;
+        "RocketReach")
+        ;;
+        "Securitytrail")
+        ;;
+        "Tomba Key")
+        ;;
+        "Secret")
+        ;;
+        "virustotal")
+        ;;
+	"zoomeye")
+	;;
+	"Previous Menu")
+	auditing_tools
+	;;
+esac
+done
+}
+metagoofil() {
+echo "metagoofil"
+}
+pixiewps() {
+echo "pixiewps"
+}
+reaver() {
+echo "reaver"
+}
 device_options() {
 #Device-Options start here
 	echo -en '\n'
@@ -329,13 +489,26 @@ auditing_tools() {
 #Passive Recon includes tools like p0f, whois, nslookup, dig, Netcraft, Shodan, DNS
 	echo -en '\n'
 	PS3=("#passcon: ")
-	passcon=("p0f Scan" "whois lookup" "dig lookup" "nslookup" "DNSenum" "Open Shodan" "whatweb" "Previous Menu")
+	passcon=("holehe" "p0f Scan" "extract data with exiftool" "whois lookup" "dig lookup" "nslookup" "DNSenum" "Open Shodan" "whatweb" "Previous Menu")
 	select passc in "${passcon[@]}"; do 
 	case $passc in
+		"holehe")
+		echo -en '\n'
+		holehe
+		echo -en '\n'
+		COLUMNS=12
+		;;
 		"p0f Scan")
                 read -p $'\e[31mName of capture file?(exclude .txt): \e[0m' capture
                 read -p $'\e[31mIP?: \e[0m' ipaddress
 		sudo p0f -i $winterface -s $ipaddress -o $capture.log 
+                echo -en '\n'
+                auditing_tools
+                COLUMNS=12
+		;;
+		"extract data with exiftool")
+		echo -en '\n'
+		exiftool
                 echo -en '\n'
                 auditing_tools
                 COLUMNS=12
