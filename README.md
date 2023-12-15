@@ -1,23 +1,23 @@
 ### NETTOOLS
-- (INTRO) Automated all-in-one penetration testing kit for Debian based distributions, includes various automation for
--  (CONT) basic penetration testing tasks with interactive script
--  (CONT) future updates will include multi-dist support
+-  Automated all-in-one penetration testing kit for Debian based distributions, includes various automation for
+-  basic penetration testing tasks with interactive script
+-  future updates will include multi-dist support
 
 ## Installation
 - (INST) installation is simple,
-first, you must make sure you have basic dependencies installed such as
+- first, you must make sure you have basic dependencies installed such as
 'git' and
 'wget'.
-most dependencies should compile upon running certain script options.
-next, run the command:
+- most dependencies should compile upon running certain script options.
+- next, run the command:
 git clone https://github.com/Fury0us/nettools
-if the first command doesnt work, run this command:
+- if the first command doesnt work, run this command:
 git clone https://github.com/Fury0us/nettools/
 
 ## Runnng the script
-change directory:
+- change directory:
 cd nettools
-then just simply run:
+- then just simply run:
 sudo bash nettools.sh
 
 ## Options
