@@ -38,3 +38,14 @@ continues to influence the cybersecurity world today
 i am in no way, shape, or form, responsible for any of the actions taken in use of this script, 
 it is merely a tool and is meant to be used professionally and with express written permission
 from the company/entity for which the penetration test is to be performed. Happy Hacking! 
+
+## update 12/15/23
+added multiple options in the passive recon menu such as
+- Infoga
+- the Moriarty-Project
+- holehe
+- spiderfoot
+- ReconDog
+- GitRob
+
+
