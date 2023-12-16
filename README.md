@@ -1,4 +1,4 @@
-### NETTOOLS
+# NETTOOLS
 -  Automated all-in-one penetration testing kit for Debian based distributions, includes various automation for
 -  basic penetration testing tasks with interactive script
 -  future updates will include multi-dist support
@@ -29,7 +29,7 @@ updates will come in perpetuity unless something changes in my life (seriously d
 work on this script and add compatibility features as i see fit, of course suggestions are encrouaged, 
 as i am in all regards still a beginner.
 
-# credits
+## credits
 shoutout to the creators of all the amazing tools that this script can take advantage of,
 i wouldnt have the inspiration i have today if it wasnt for everyone that has and 
 continues to influence the cybersecurity world today
@@ -39,7 +39,7 @@ i am in no way, shape, or form, responsible for any of the actions taken in use 
 it is merely a tool and is meant to be used professionally and with express written permission
 from the company/entity for which the penetration test is to be performed. Happy Hacking! 
 
-## update 12/15/23
+# update 12/15/23
 added multiple options in the passive recon menu such as
 - Infoga
 - the Moriarty-Project
