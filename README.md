@@ -1,6 +1,6 @@
 # NETTOOLS
--  Automated all-in-one penetration testing kit for Debian based distributions, includes various automation for
--  basic penetration testing tasks with interactive script
+-  Automated all-in-one penetration testing kit for Debian based distributions
+-  basic penetration testing tasks with automated interactive script
 -  future updates will include multi-dist support
 
 ## Installation
