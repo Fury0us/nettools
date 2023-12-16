@@ -1,40 +1,7 @@
 #!/bin/bash
+echo $'\e[1;31m'
 COLUMNS=12
-exiftool() {
-	echo -en '\n'
-	clear
-	read -p $'\e[31mFile Path?: \e[0m' photo
-	PS3=("#exif: ")
-	exif=("View All Metadata" "Erase Metadata" "View Metadata Tags" "Edit Metadata" "Get GPS Coordinates" "Extract Metadata to Text" "Previous Menu")
-	select ex in "${exif[@]}"; do
-	case $ex in
-	"View All Metadata")
-	sudo exiftool $photo
-	;;
-	"Erase Metadata")
-	sudo exiftool -all= $photo
-	;;
-	"View Metadata Tags")
-	sudo exiftool -a $photo
-	;;
-	"Edit Metadata")
-	read -p $'\e[31mTAGMANE?: \e[0m' tag
-	read -p $'\e[31mValue?\e[0m' value
-	sudo exiftool -$tag="$value"
-	;;
-	"Get GPS Coordinates")
-	sudo exiftool -GPSLatitude -GPSLongitude $photo
-	;;
-	"Extract Metadata to Text")
-	sudo exiftool -a -u -G1 -w TXT "$photo".txt $photo
-	;;
-	"Previous Menu")
-	auditing_tools
-	;;
-	esac
-done
-}
-holehe() {
+holeheehee() {
 	if [ $HOME/.local/bin/holehe ]
 	then
 		clear
@@ -47,9 +14,12 @@ holehe() {
 		echo -en '\n'
 		echo $'\e[31mholehe has been installed!\e[0m'
 	fi
-	read -p $'\e[31mDomain/Email to search?: \e[0m' scan
-	holehe $scan
+	read -p $'\e[31mmail to search?: \e[0m' scan
+	read -p $'\e[1;31mEnter Username: \e[0m' ur
+	su -l $ur -c "holehe $scan"
 	echo -en '\n'
+	echo $'\e[1;31m'
+	COLUMNS=12
 	auditing_tools
 }
 skipfish() {
@@ -98,58 +68,123 @@ done
 }
 harvester_api() {
 	echo -en '\n'
-	clear
-	PS3=("#harv-api: ")
-	hapi=("bevigil" "binaryedge" "bufferoverun" "Censys ID" "Secret" "criminalip" "fullhunt" "Github" "Hunter" "hunterhow" "Intelx" "netlas" "onyphe" "PentestTools" "ProjectDiscovery" "RocketReach" "Securitytrail" "Tomba Key" "Virustotal" "zoomeye" "Previous Menu")
-	select ha in "${hapi[@]}"; do
-	case $ha in
-	"bevigil")
-	;;
-	"binaryedge")
-	;;
-	"bufferoverun")
-	;;
-	"Censys ID")
-	;;
-	"Secret")
-	;;
-	"criminalip")
-	;;
-	"fullhunt")
-	;;
-	"Github")
-	;;
-	"Hunter")
-	;;
-	"hunterhow")
-	;;
-	"Intelx")
-        ;;
-        "netlas")
-        ;;
-        "onyphe")
-        ;;
-        "PentestTools")
-        ;;
-        "ProjectDiscovery")
-        ;;
-        "RocketReach")
-        ;;
-        "Securitytrail")
-        ;;
-        "Tomba Key")
-        ;;
-        "Secret")
-        ;;
-        "virustotal")
-        ;;
-	"zoomeye")
-	;;
-	"Previous Menu")
-	auditing_tools
-	;;
-esac
+echo "type e to return"
+while [ $i < "e" ]; do
+cat << EOF
+	"bevigil"
+	"binaryedge"
+	"bufferoverun"
+	"Censys ID"
+	"Secret"
+	"criminalip"
+	"fullhunt"
+	"Github"
+	"Hunter"
+	"hunterhow"
+	"Intelx"
+        "netlas"
+        "onyphe"
+        "PentestTools"
+        "ProjectDiscovery"
+        "RocketReach"
+        "Securitytrail"
+        "Tomba Key"
+        "Secret"
+        "virustotal"
+	"zoomeye"
+	"Previous Menu"
+EOF
 done
+	auditing_tools
+}
+infoga() {
+read -p $'\e[1;31mUsername?: \e[0m' una
+if [ -d /home/$una/Infoga ]
+then
+echo "Infoga Already Exists"
+cd /home/$una/Infoga &&
+sudo python setup.py install &&
+sudo python infoga.py
+else
+echo "Installing Infoga"
+sudo git clone https://github.com/GiJ03/Infoga &&
+cd /home/$una/Infoga &&
+sudo python setup.py install &&
+sudo python infoga.py
+fi
+}
+moriarty() {
+read -p $'\e[1;31mUsername?: \e[0m' una
+if [ -d /home/$una/Moriarty-Project ]
+then
+echo "Moriarty-Project Already Exists"
+cd /home/$una/Moriarty-Project &&
+sudo bash install.sh &&
+sudo bash run.sh
+else
+echo "Installing Moriarty-Project"
+sudo git clone https://github.com/AzizKpln/Moriarty-Project &&
+cd Moriarty-Project &&
+sudo bash install.sh &&
+sudo bash run.sh
+fi
+}
+spiderfoot() {
+read -p $'\e[1;31mUsername?: \e[0m' una
+if [ -d /home/$una/spiderfoot ]
+then
+echo "spiderfoot already exists"
+cd /home/$una/spiderfoot &&
+echo $'\e[1;31mYou can run spiderfoot by running: python3 ./sf.py -l (localip:port)\e[0m'
+else
+echo "installing spiderfoot"
+sudo git clone https://github.com/smicallef/spiderfoot &&
+cd spiderfoot &&
+pip3 install -r requirements.txt &&
+echo $'\e[1;31mYou can run spiderfoot by running: python3 ./sf.py -l (localip:port)\e[0m'
+sleep 1
+fi
+}
+gitrob() {
+if [ /usr/bin/go ]
+then
+echo "golang is installed"
+else
+echo "installing golang"
+sudo apt update &&
+sudo apt upgrade &&
+sudo apt install golang
+fi
+read -p $'\e[1;31mUsername?: \e[0m' una
+if [ -d /home/$una/gitrob ]
+then
+echo "gitrob already exists at: $dirs"
+cd /home/$una/gitrob &&
+make build &&
+echo $'\e[1;31mYou can run gitrob with the command: ./bin/gitrob-(ARCH) (sub-command)\e[0m'
+else
+echo "installing gitrob"
+sudo git clone https://github.com/narendrakadali/gitrob &&
+cd gitrob &&
+sudo make build &&
+echo $'\e[1;31mYou can run gitrob with the command: ./bin/gitrob-(ARCH) (sub-command)\e[0m'
+fi
+}
+recondog() {
+read -p $'\e[1;31mUsername?: \e[0m' una
+if [ -d /home/$una/ReconDog ]
+then
+echo "ReconDog already exists at: $dirs"
+cd /home/$una/ReconDog &&
+pip3 install -r requirements.txt &&
+sudo python dog
+else
+echo "Installing ReconDog"
+sudo git clone https://github.com/s0md3v/ReconDog &&
+cd ReconDog &&
+pip3 install -r requirements.txt &&
+sudo python dog
+fi
 }
 metagoofil() {
 echo "metagoofil"
@@ -489,12 +524,42 @@ auditing_tools() {
 #Passive Recon includes tools like p0f, whois, nslookup, dig, Netcraft, Shodan, DNS
 	echo -en '\n'
 	PS3=("#passcon: ")
-	passcon=("holehe" "p0f Scan" "extract data with exiftool" "whois lookup" "dig lookup" "nslookup" "DNSenum" "Open Shodan" "whatweb" "Previous Menu")
+	passcon=("Infoga" "Moriarty" "Spiderfoot" "GitRob" "ReconDog" "holehe" "p0f Scan" "whois lookup" "dig lookup" "nslookup" "DNSenum" "Open Shodan" "whatweb" "Previous Menu")
 	select passc in "${passcon[@]}"; do 
 	case $passc in
+		"Infoga")
+                echo -en '\n'
+		infoga
+                echo -en '\n'
+                COLUMNS=12
+		;;
+		"Moriarty")
+                echo -en '\n'
+		moriarty
+                echo -en '\n'
+                COLUMNS=12
+		;;
+		"Spiderfoot")
+                echo -en '\n'
+		spiderfoot
+                echo -en '\n'
+                COLUMNS=12
+		;;
+		"GitRob")
+                echo -en '\n'
+		gitrob
+                echo -en '\n'
+                COLUMNS=12
+		;;
+		"ReconDog")
+                echo -en '\n'
+		recondog
+                echo -en '\n'
+                COLUMNS=12
+		;;
 		"holehe")
 		echo -en '\n'
-		holehe
+		holeheehee
 		echo -en '\n'
 		COLUMNS=12
 		;;
@@ -502,13 +567,6 @@ auditing_tools() {
                 read -p $'\e[31mName of capture file?(exclude .txt): \e[0m' capture
                 read -p $'\e[31mIP?: \e[0m' ipaddress
 		sudo p0f -i $winterface -s $ipaddress -o $capture.log 
-                echo -en '\n'
-                auditing_tools
-                COLUMNS=12
-		;;
-		"extract data with exiftool")
-		echo -en '\n'
-		exiftool
                 echo -en '\n'
                 auditing_tools
                 COLUMNS=12
@@ -792,6 +850,7 @@ echo $'\e[1;31m'
 main_menu() {
 #FUNCTION MAIN MENU
 #____________________________________________________
+COLUMNS=12
 PS3=("#main: ")
 options=("Device Options" "Auditing Tools" "Password Cracking" "Exit")
 select opt in "${options[@]}"; do
