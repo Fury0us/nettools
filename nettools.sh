@@ -186,8 +186,9 @@ pip3 install -r requirements.txt &&
 sudo python dog
 fi
 }
-metagoofil() {
-echo "metagoofil"
+duckscrap() {
+COLUMNS=12
+
 }
 pixiewps() {
 echo "pixiewps"
@@ -348,7 +349,7 @@ auditing_tools() {
 		"Script(Pre-Made)")
         	echo -en '\n'
 		PS3=("#kiddie: ")
-		madescr=("Set Interface Into Monitor Mode" "Set Interface Into Managed Mode" "Launch Airgeddon" "Launch Wifite" "Launch Wifite /w rockyou" "Launch Wifite(attack ALL)(WPA ONLY)" "Install & Run Routersploit" "Previous Menu")
+		madescr=("Set Interface Into Monitor Mode" "Set Interface Into Managed Mode" "Launch Airgeddon" "Launch Wifite" "Wifite(client only)" "Wifite Auto Attack" "Launch Wifite /w rockyou" "Launch Wifite(2.4gz & 5g)(WPA ONLY)" "Install & Run Routersploit" "Previous Menu")
 		select madescr in "${madescr[@]}"; do
 		case $madescr in
                 "Set Interface Into Monitor Mode")
@@ -393,6 +394,17 @@ auditing_tools() {
                 auditing_tools
                 COLUMNS=12
 		;;
+		"Wifite(client only)")
+		echo -en '\n'
+		sudo wifite --all --client-only
+		echo -en '\n'
+		;;
+		"Wifite Auto Attack")
+		echo -en '\n'
+		cd ~
+		sudo wifite -c 1-11 --client-only --all --skip-crack -inf -p 30
+		echo -en '\n'
+		;;
 		"Launch Wifite /w rockyou")
 		echo -en '\n'
 		sudo wifite -mac --dict /usr/share/wordlists/rockyou.txt
@@ -400,7 +412,7 @@ auditing_tools() {
                 auditing_tools
                 COLUMNS=12
 		;;
-		"Launch Wifite(attack ALL)(WPA ONLY)")
+		"Launch Wifite(2.4gz & 5g)(WPA ONLY)")
 		echo -en '\n'
 		sudo wifite -mac --all --dict /usr/share/wordlists/null.txt
                 echo -en '\n'
