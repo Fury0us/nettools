@@ -48,4 +48,6 @@ added multiple options in the passive recon menu such as
 - ReconDog
 - GitRob
 
+# update 12/20/23
+added an option to automate wifi attacks
 
