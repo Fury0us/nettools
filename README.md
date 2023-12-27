@@ -50,4 +50,15 @@ added multiple options in the passive recon menu such as
 
 # update 12/20/23
 added an option to automate wifi attacks
-
+#
+# update 12/26/2023
+added a better looking interface, colors, and logos, as well as 
+- Android Hacking Menu
+- Hydra
+- Sqlmap
+- Angry IP Scanner
+- commix
+- armitage
+- Payload Generator Menu
+- many more tools and features
+#
