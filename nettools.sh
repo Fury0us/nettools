@@ -1,6 +1,158 @@
 #!/bin/bash
 echo $'\e[1;31m'
 COLUMNS=12
+android_menu() {
+COLUMNS=12
+clear
+asci_intro
+echo -en '\n'
+PS3=("#android: ")
+andmen=("Install ADB Kali" "PhoneSploit" "CiLocks" "ADB-Toolkit" "SmsEye3" "GalleryEye" "LocationEye" "Previous Menu" "Exit")
+COLUMNS=12
+echo -en '\n'
+read -p $'\e[1;31mUsername?: \e[0m' usrv
+echo -en '\n'
+echo $'\e[1;36m'
+select and in "${andmen[@]}"; do
+case $and in
+"Install ADB Kali")
+if [ /usr/bin/fastboot ]
+then
+echo $'\e[1;31mFastboot is already installed\e[0m'
+else
+sudo apt install fastboot &&
+clear &&
+echo $'\e[1;31mFastboot has been installed\e[0m'
+fi
+if [ /usr/bin/adb ]
+then
+echo $'\e[1;31mADB is already installed\e[0m'
+else
+sudo apt install adb &&
+clear &&
+echo $'\e[1;31mADB has been installed\e[0m'
+fi &&
+sleep 3 &&
+android_menu
+;;
+"PhoneSploit")
+cd /home/$usrv &&
+sudo -u $usrv sudo git clone https://github.com/AzeemIdrisi/PhoneSploit-Pro &&
+cd PhoneSploit-Pro &&
+echo $'\e[1;31mexit script to launch\e[0m' &&
+sleep 3 &&
+android_menu
+;;
+"CiLocks")
+cd /home/$usrv &&
+sudo -u $usrv sudo git clone https://github.com/tegal1337/CiLocks &&
+cd CiLocks &&
+echo $'\e[1;31mexit script to launch\e[0m' &&
+sleep 3 &&
+android_menu
+;;
+"ADB-Toolkit")
+cd /home/$usrv &&
+sudo -u $usrv sudo git clone https://github.com/ASHWIN990/ADB-Toolkit &&
+cd ADB-Toolkit &&
+echo $'\e[1;31mexit script to launch\e[0m' &&
+sleep 3 &&
+android_menu
+;;
+"SmsEye3")
+cd /home/$usrv &&
+sudo -u $usrv sudo git clone https://github.com/AbyssalArmy/SmsEye3 &&
+cd SmsEye3 &&
+echo $'\e[1;31mexit script to launch\e[0m' &&
+sleep 3 &&
+cd ~ &&
+android_menu
+;;
+"GalleryEye")
+cd /home/$usrv &&
+sudo -u $usrv sudo git clone https://github.com/AbyssalArmy/GalleryEye &&
+cd GalleryEye &&
+echo $'\e[1;31mexit script to launch\e[0m' &&
+sleep 3 &&
+cd ~ &&
+android_menu
+;;
+"LocationEye")
+cd /home/$usrv &&
+sudo -u $usrv sudo git clone https://github.com/AbyssalArmy/LocationEye &&
+cd LocationEye &&
+echo $'\e[1;31mexit script to launch\e[0m' &&
+sleep 3 &&
+cd ~ &&
+android_menu
+;;
+"Previous Menu")
+clear
+main_menu
+;;
+"Exit")
+exit
+;;
+esac
+done
+echo $'\e[0m'
+}
+asci_intro() {
+echo $'\e[1;32m--------------------------------------------------------------------------\e[0m'
+echo $'\e[1;32m|\e[1;31m     _   __       __        ______               __                __   \e[1;32m|\e[0m'
+echo $'\e[1;32m|\e[1;31m    / | / /___   / /_      /_  __/____   ____   / /_____    _____ / /_  \e[1;32m|\e[0m'
+echo $'\e[1;32m|\e[1;31m   /  |/ // _ \ / __/______ / /  / __ \ / __ \ / // ___/   / ___// __ \ \e[1;32m|\e[0m'
+echo $'\e[1;32m|\e[1;31m  / /|  //  __// /_ /_____// /  / /_/ // /_/ // /(__  )_  (__  )/ / / / \e[1;32m|\e[0m'
+echo $'\e[1;32m|\e[1;31m /_/ |_/ \___/ \__/       /_/   \____/ \____//_//____/(_)/____//_/ /_/  \e[1;32m|\e[0m'
+echo $'\e[1;32m--------------------------------------------------------------------------\e[0m'
+}
+generate_rsf() {
+
+        if [ ~/routersploit/rsf.py = 1 ]
+        then
+                sudo python3 ~/routersploit/rsf.py
+        else
+                sudo apt-get install python3-pip &&
+                git clone https://www.github.com/threat9/routersploit &&
+                cd ~/routersploit &&
+                sudo python3 -m pip install -r requirements.txt &&
+                cd ~/routersploit &&
+                sudo python3 rsf.py
+        fi
+}
+
+aarmitage() {
+if [ /usr/bin/armitage ]
+then
+sudo msfdb init &&
+sudo armitage
+else
+sudo apt install armitage -y &&
+clear &&
+sudo msfdb init &&
+sudo armitage
+fi
+}
+commixx() {
+if [ /usr/bin/commix ]
+then
+commix --help
+else
+sudo apt install commix -y &&
+clear &&
+commix --help
+fi
+}
+eevilginx2() {
+if [ /usr/bin/evilginx2 ]
+then
+evilginx2
+else
+sudo apt install evilginx2 -y &&
+clear &&
+evilginx2
+fi
+}
 holeheehee() {
 	if [ $HOME/.local/bin/holehe ]
 	then
@@ -22,11 +174,71 @@ holeheehee() {
 	COLUMNS=12
 	auditing_tools
 }
+hhydra() {
+if [ /usr/bin/hydra ]
+then
+hydra -h
+else
+sudo apt install hydra &&
+clear &&
+hydra -h
+fi
+}
+payloads() {
+echo -en '\n'
+COLUMNS=12
+asci_intro
+echo -en '\n'
+PS3=("#payload: ")
+payload_menu=("Venom C2 Framework" "TheFatRat" "Previous Menu" "Main Menu")
+select pa in "${payload_menu[@]}"; do
+case $pa in
+"Venom C2 Framework")
+echo -en '\n'
+echo $'\e[1;31mInstalling Venom C2 Framework\e[0m'
+git clone https://github.com/r00t-3x10it/venom &&
+cd venom &&
+sudo ./venom.sh
+payloads
+COLUMNS=12
+;;
+"TheFatRat")
+echo -en '\n'
+echo $'\e[1;31mInstalling TheFatRat...\e[0m'
+echo -en '\n'
+echo $'\e[1;31mThis may take a while...\e[0m'
+sleep 1 &&
+git clone https://github.com/screetsec/TheFatRat &&
+cd TheFatRat &&
+sudo bash update &&
+sudo bash setup.sh &&
+sudo fatrat
+sleep 1 &&
+echo $'\e[1;31mYou can launch by using: sudo fatrat\e[0m'
+echo -en '\n'
+payloads
+COLUMNS=12
+;;
+"Previous Menu")
+clear
+auditing_tools
+COLUMNS=12
+;;
+"Main Menu")
+clear
+main_menu
+COLUMNS=12
+;;
+esac
+done
+}
 skipfish() {
 	echo -en '\n'
 	clear
 	read -p $'\e[31mURL?\e[0m' URL
 	read -p $'\e[31mOutput loc?: \e[0m' OUTPUT
+	asci_intro
+	echo -en '\n'
 	PS3=("#skip: ")
 	skip=("Custom Config File" "Generate a Report" "Maximum Depth" "Spec Login" "Previous Menu")
 	select sk in "${skip[@]}"; do
@@ -43,6 +255,16 @@ skipfish() {
 	;;
 	esac
 done
+}
+ssqlmap() {
+if [ /usr/bin/sqlmap ]
+then
+sqlmap --help
+else
+sudo apt install sqlmap &&
+clear &&
+sqlmap --help
+fi
 }
 harvester() {
 	echo -en '\n'
@@ -190,6 +412,7 @@ duckscrap() {
 COLUMNS=12
 
 }
+
 pixiewps() {
 echo "pixiewps"
 }
@@ -198,9 +421,14 @@ echo "reaver"
 }
 device_options() {
 #Device-Options start here
+	clear
 	echo -en '\n'
+	asci_intro
+	echo -en '\n'
+	COLUMNS=12
 	PS3=("#dev: ")
 	devoptions=("Randomize Device Info" "List IP Address" "List MAC" "Proxychains Firefox Session" "Main Menu")
+	echo $'\e[1;32m'
 	select devop in "${devoptions[@]}"; do
 	case $devop in
 	"Randomize Device Info")
@@ -337,19 +565,25 @@ sudo ip -6 addr replace $random_ipv6/64 dev $winterface
 	;;
 esac
 done
+echo $'\e[0m'
 }
 auditing_tools() {
 	#Auditing-Tools start here
+	clear
 	echo -en '\n'
 	COLUMNS=12
+	asci_intro
+	echo -en '\n'
 	PS3=("#aud: ")
-	audit=("Script(Pre-Made)" "Script(Kali-Based)" "Passive Recon" "Active Recon" "Main Menu")
+	audit=("Script(Pre-Made)" "Script(Kali-Based)" "Passive Recon" "Active Recon" "Payloads Menu" "Main Menu")
+	echo $'\e[1;31m'
 	select aud in "${audit[@]}"; do
 	case $aud in
 		"Script(Pre-Made)")
+		clear
         	echo -en '\n'
 		PS3=("#kiddie: ")
-		madescr=("Set Interface Into Monitor Mode" "Set Interface Into Managed Mode" "Launch Airgeddon" "Launch Wifite" "Wifite(client only)" "Wifite Auto Attack" "Launch Wifite /w rockyou" "Launch Wifite(2.4gz & 5g)(WPA ONLY)" "Install & Run Routersploit" "Previous Menu")
+		madescr=("Set Interface Into Monitor Mode" "Set Interface Into Managed Mode" "Launch Airgeddon" "Launch Wifite" "Wifite(client only)" "Wifite Auto Attack(DEAUTH)" "Wifite Auto Attack(NO DEAUTH)" "Launch Wifite /w rockyou" "Launch Wifite(2.4gz & 5g)(WPA ONLY)" "Install & Run Routersploit" "Previous Menu")
 		select madescr in "${madescr[@]}"; do
 		case $madescr in
                 "Set Interface Into Monitor Mode")
@@ -396,14 +630,19 @@ auditing_tools() {
 		;;
 		"Wifite(client only)")
 		echo -en '\n'
-		sudo wifite --all --client-only
+		sudo wifite --all --clients-only
 		echo -en '\n'
 		;;
-		"Wifite Auto Attack")
+		"Wifite Auto Attack(DEAUTH)")
 		echo -en '\n'
-		cd ~
-		sudo wifite -c 1-11 --client-only --all --skip-crack -inf -p 30
+		cd ~ &&
+		sudo wifite -c 1-11 --clients-only --all --skip-crack --no-pmkid -inf -p 30
 		echo -en '\n'
+		;;
+		"Wifite Auto Attack(NO DEAUTH)")
+		echo -en '\n'
+		cd ~ &&
+		sudo wifite -c 1-11 --clients-only --skip-crack --wps --pmkid -inf -p 30
 		;;
 		"Launch Wifite /w rockyou")
 		echo -en '\n'
@@ -435,7 +674,10 @@ auditing_tools() {
 		COLUMNS=12
 	;;
 	"Script(Kali-Based)")
+	clear
         echo -en '\n'
+	asci_intro
+	echo -en '\n'
 		PS3=("#kbased: ")
 		kaliscr=("Set Interface Into Monitor Mode" "Set Interface Into Managed Mode" "Search for devices(wifi needed)" "Airodump-ng (all)" "Airodump-ng (Channel)" "Airodump-ng (Chan+Bssid)" "Airodump-ng (Silent Cap)" "Aireplay-ng (BSSID)" "Aireplay-ng (MAC+BSSID)" "Aireplay-ng (diff deauth code)" "Previous Menu")
 		select kalisc in "${kaliscr[@]}"; do
@@ -534,6 +776,9 @@ auditing_tools() {
 		;;
 	"Passive Recon")
 #Passive Recon includes tools like p0f, whois, nslookup, dig, Netcraft, Shodan, DNS
+	clear
+	echo -en '\n'
+	asci_intro
 	echo -en '\n'
 	PS3=("#passcon: ")
 	passcon=("Infoga" "Moriarty" "Spiderfoot" "GitRob" "ReconDog" "holehe" "p0f Scan" "whois lookup" "dig lookup" "nslookup" "DNSenum" "Open Shodan" "whatweb" "Previous Menu")
@@ -633,17 +878,66 @@ auditing_tools() {
 		;;
 	"Active Recon")
 #Active Recon includes tools like Dnsenum and Nmap
+	clear
+	echo -en '\n'
+	asci_intro
 	echo -en '\n'
 	PS3=("#actcon: ")
-	actcon=("Nmap TCP Scan(Stealth)" "Nmap UDP Scan(Stealth)" "Nmap All Scan(TCP)(Stealth)" "Nmap All Scan(UDP)(Stealth)" "hping3 scan" "hping3 scan(typeofservice)" "hping3 scan(Fragmented & Spoofed IP)" "Previous Menu")
+	actcon=("Angry IP" "Armitage" "Commix" "Evilginx2" "Hydra" "Sqlmap" "Nmap TCP Scan(Stealth)" "Nmap UDP Scan(Stealth)" "Nmap All Scan(TCP)(Stealth)" "Nmap All Scan(UDP)(Stealth)" "hping3 scan" "hping3 scan(typeofservice)" "hping3 scan(Fragmented & Spoofed IP)" "Previous Menu")
 	select actc in "${actcon[@]}"; do
     case $actc in
+		"Angry IP")
+		if [ /usr/bin/ipscan ]
+		then
+		echo "AngryIP is installed"
+		else
+		sudo apt install ipscan &&
+		echo -en '\n'
+		echo "installed AngryIP"
+		echo -en '\n'
+		sudo ipscan
+		fi
+		;;
+		"Armitage")
+		clear
+		aarmitage
+		echo -en '\n'
+		auditing_tools
+		COLUMNS=12
+		;;
+		"Commix")
+		clear
+		commixx
+		echo -en '\n'
+		auditing_tools
+		COLUMNS=12
+		;;
+		"Evilginx2")
+		clear
+		eevilginx2
+                echo -en '\n'
+                auditing_tools
+                COLUMNS=12
+		;;
+		"Hydra")
+		clear
+		hhydra
+		echo -en '\n'
+                auditing_tools
+                COLUMNS=12
+		;;
+		"Sqlmap")
+		clear
+		ssqlmap
+		echo -en '\n'
+		auditing_tools
+		COLUMNS=12
+		;;
 		"Nmap TCP Scan(Stealth)")
 		read -p '\e[1;31mDomain or IP?: \e[0m' domain
 		echo -en '\n'
 		sudo nmap -sT -Pn $domain > $domain"nmaptcp".txt
 		echo -en '\n'
-                echo -en '\n'
                 auditing_tools
                 COLUMNS=12
 		;;
@@ -652,7 +946,6 @@ auditing_tools() {
 		echo -en '\n'
 		sudo nmap -sU -Pn $domain > $domain"nmapudp".txt
 		echo -en '\n'
-                echo -en '\n'
                 auditing_tools
                 COLUMNS=12
 		;;
@@ -660,7 +953,6 @@ auditing_tools() {
 		read -p $'\e[1;31mDomain or IP?: \e[0m' domain
 		echo -en '\n'
 		sudo nmap -A -Pn $domain > $domain"nmapall".txt
-		echo -en '\n'
                 echo -en '\n'
                 auditing_tools
                 COLUMNS=12
@@ -670,7 +962,6 @@ auditing_tools() {
 		echo -en '\n'
 		sudo hping3 $ipaddr
 		echo -en '\n'
-                echo -en '\n'
                 auditing_tools
                 COLUMNS=12
 		;;
@@ -680,7 +971,6 @@ auditing_tools() {
                 read -p $'\e[31mwebsite?: \e[0m' web
                 echo -en '\n'
                 sudo hping3 -c $pack -S $web -I $winterface
-                echo -en '\n'
                 echo -en '\n'
                 auditing_tools
                 COLUMNS=12
@@ -700,19 +990,31 @@ auditing_tools() {
 		auditing_tools
 		COLUMNS=12
 		;;
+	"Payloads Menu")
+	clear
+	payloads
+	echo -en '\n'
+	main_menu
+	;;
 	"Main Menu")
 	echo -en '\n'
 	main_menu
 	;;
 esac
 done
+echo $'\e[0m'
 }
 	main_menu
 password_cracking() {
+	clear
 	#PASSWORD CRACKING start here
 	echo -en '\n'
+	asci_intro
+	echo -en '\n'
+	echo $'\e[1;32m'
 	PS3=("#crack: ")
 	pwcrack=("Convert to .hc22000" "Aircrack Dictionary Attack" "Hashcat Dictionary Attack" "Generate Password List" "Main Menu")
+	COLUMNS=12
 	select pcrack in "${pwcrack[@]}"; do
 	case $pcrack in
 	"Convert to .hc2200")
@@ -800,6 +1102,7 @@ password_cracking() {
 	;;
 	esac
 	done
+	echo $'\e[0m'
 }
 clear
 echo $'\e[31m\e[1mWelcome!\e[0m'
@@ -857,42 +1160,34 @@ tput blink ; tput setaf 1 ; tput bold ; echo "If you encountered any errors at s
 sleep 2
 clear
 echo $'\e[1;31m'
-#BEGIN THE 'main_menu() { }' call to function @ main.
-#____________________________________________________
 main_menu() {
 #FUNCTION MAIN MENU
 #____________________________________________________
+clear
 COLUMNS=12
+asci_intro
+echo -en '\n'
 PS3=("#main: ")
-options=("Device Options" "Auditing Tools" "Password Cracking" "Exit")
+options=("Device Options" "Auditing Tools" "Password Cracking" "Android Hacking Menu" "Exit")
+echo $'\e[1;36m'
 select opt in "${options[@]}"; do
 case $opt in
 "Device Options")
-		device_options
-	;;
+                device_options
+        ;;
 "Auditing Tools")
-		auditing_tools
-	;;
+                auditing_tools
+        ;;
 "Password Cracking")
-		password_cracking
+                password_cracking
+        ;;
+"Android Hacking Menu")
+		android_menu
 	;;
 "Exit")
 exit;;
 esac
 done
-}
-generate_rsf() {
-
-	if [ ~/routersploit/rsf.py = 1 ]
-	then
-		sudo python3 ~/routersploit/rsf.py
-	else
-		sudo apt-get install python3-pip &&
-		git clone https://www.github.com/threat9/routersploit &&
-		cd ~/routersploit &&
-		sudo python3 -m pip install -r requirements.txt &&
-		cd ~/routersploit &&
-		sudo python3 rsf.py
-	fi
+echo $'\e[0m'
 }
 main_menu
