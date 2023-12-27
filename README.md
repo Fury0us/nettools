@@ -14,7 +14,7 @@ git clone https://github.com/Fury0us/nettools
 - if the first command doesnt work, run this command:
 git clone https://github.com/Fury0us/nettools/
 
-## Runnng the script
+## Running the script
 - change directory:
 cd nettools
 - then just simply run:
