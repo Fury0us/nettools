@@ -524,6 +524,7 @@ sudo ip -6 addr replace $random_ipv6/64 dev $winterface
         echo -en '\n'
 	ifconfig $winterface | grep 'inet'
         echo -en '\n'
+	sleep 5
 	device_options
         COLUMNS=12
 	;;
@@ -531,6 +532,7 @@ sudo ip -6 addr replace $random_ipv6/64 dev $winterface
         echo -en '\n'
 	sudo macchanger -s $winterface
         echo -en '\n'
+	sleep 5
 	device_options
         COLUMNS=12
 	;;
