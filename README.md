@@ -62,3 +62,5 @@ added a better looking interface, colors, and logos, as well as
 - Payload Generator Menu
 - many more tools and features
 #
+# Update 01/03/24
+few bug fixes
