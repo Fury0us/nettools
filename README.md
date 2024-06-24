@@ -65,3 +65,5 @@ added a better looking interface, colors, and logos, as well as
 #
 # Update 01/03/24
 few bug fixes
+# Update 06/23/24
+Cosmetic update as well as added a few more dep checks
