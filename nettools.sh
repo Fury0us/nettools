@@ -419,6 +419,10 @@ echo "pixiewps"
 reaver() {
 echo "reaver"
 }
+winterface_change() {
+read -p $'\e[1;31mInterface Name?: \e[0m' newint
+winterface="$newint"
+}
 device_options() {
 #Device-Options start here
 	clear
@@ -427,10 +431,13 @@ device_options() {
 	echo -en '\n'
 	COLUMNS=12
 	PS3=("#dev: ")
-	devoptions=("Randomize Device Info" "List IP Address" "List MAC" "Proxychains Firefox Session" "Main Menu")
+	devoptions=("Change Assigned Interface" "Randomize Device Info" "List IP Address" "List MAC" "Proxychains Firefox Session" "Main Menu")
 	echo $'\e[1;32m'
 	select devop in "${devoptions[@]}"; do
 	case $devop in
+	"Change Assigned Interface")
+        winterface_change
+	;;
 	"Randomize Device Info")
 	echo -en '\n'
 	sudo ifconfig $winterface down
@@ -1131,7 +1138,7 @@ clear
 #Begin Check if script has what it needs....
 
 # List of commands and their corresponding packages
-commands=("airgeddon" "wifite" "aircrack-ng" "macchanger" "hashcat" "airmon-ng" "ifconfig" "proxychains" "tor")
+commands=("airgeddon" "wifite" "aircrack-ng" "macchanger" "hashcat" "airmon-ng" "ifconfig" "proxychains" "tor" "spiderfoot" "dnsrecon" "dnsenum")
 
 # Function to check if a command is present on the system and install it if needed
 check_and_install_command() {
